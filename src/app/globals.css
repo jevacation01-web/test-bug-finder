@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  --accent: #34d399;
+  --accent-2: #22d3ee;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+  background-color: #030712;
+  color: #e2e8f0;
+}
+
+.font-mono-term {
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+/* Neon grid backdrop */
+.bg-cyber-grid {
+  background-image:
+    linear-gradient(to right, rgb(52 211 153 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(52 211 153 / 0.05) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+.text-glow {
+  text-shadow:
+    0 0 12px rgb(52 211 153 / 0.65),
+    0 0 42px rgb(52 211 153 / 0.35);
+}
+
+.box-glow {
+  box-shadow:
+    0 0 0 1px rgb(52 211 153 / 0.25),
+    0 0 28px rgb(52 211 153 / 0.12),
+    inset 0 0 24px rgb(52 211 153 / 0.04);
+}
+
+.hero-radial {
+  background:
+    radial-gradient(ellipse 60% 45% at 50% -5%, rgb(16 185 129 / 0.16), transparent 65%),
+    radial-gradient(ellipse 45% 35% at 85% 15%, rgb(34 211 238 / 0.08), transparent 60%);
+}
+
+/* Blinking terminal cursor */
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.cursor-blink::after {
+  content: "▊";
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  color: var(--accent);
+}
+
+/* Scan-line shimmer for live scans */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(400%);
+  }
+}
+.animate-scanline {
+  animation: scanline 2.4s linear infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}
+
+/* Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(52 211 153 / 0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(52 211 153 / 0.3);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::selection {
+  background: rgb(52 211 153 / 0.35);
+  color: #ecfdf5;
+}
+
+/* Expandable finding cards */
+details.finding-card summary::-webkit-details-marker {
+  display: none;
+}
+details.finding-card[open] .chevron {
+  transform: rotate(90deg);
+}
+.chevron {
+  transition: transform 0.15s ease;
+}
